@@ -43,6 +43,27 @@ after release 1.0.1,
 rebase test with latest dev,
 then we go back to case 1.
 
+### Optional solution
+
+checkout `test-cand` from test,
+then create 3 PRs for hotfix,
+
+- bug-x > test
+- bug-x > test-cand
+- bug-x > dev
+
+
+then create 2 PRs for hotfix,
+
+- feature-x > test
+- feature-x > dev
+
+After release hot fix,
+we can do 
+
+1. rebase test with test-cand
+2. or, delete test, and rename test-cand to test.
+
 ## Case 3 Hot fix with conflict, resolve in dev
 
 the basic idea is the same as case 2,
@@ -52,4 +73,11 @@ so we need to resolve conflicts before we merge feature-3 to dev.
 
 ## Case 4 Hot fix with conflict, resolve in test
 
+if we first merge the feature,
+we might not be able to merge bug PR to both test and dev,
+we can merge to test first,
+and then resolve conflicts and then merge to dev.
 
+but after release hotfix,
+while we rebase test with dev,
+we need to solve all conflicts again.
